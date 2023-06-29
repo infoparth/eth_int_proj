@@ -1,0 +1,15 @@
+{
+  "name": "eth_int_module_proj",
+  "version": "1.0.0",
+  "description": "## This folder contains the final projects for the eth-intermediate modules. ### The module_1.sol contains the smart contract implementing the revert(), assert() and require() functions, for the final project of the first module.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.9.2"
+  }
+}
