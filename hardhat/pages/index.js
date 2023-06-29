@@ -9,6 +9,8 @@ export default function HomePage() {
   const [inputValue, setInputValue] = useState('');
   const [inputValue_II, setInputValue_II] = useState('');
   const [arrayData, setArrayData] = useState([]);
+  const [value, setValue] = useState('');
+  const [valueRem, setValueRem] = useState('');
 
   const contractAddress = "0xe2f55536668747dbe0fd0e31ba22da7fdc5aefb2";
   const evenTesABI = test_abi.abi;
@@ -71,14 +73,16 @@ export default function HomePage() {
     // Call the contract function with the input value
     await evenTes.addMember(inputValue);
     // Do something after the contract function call
-    console.log(`Address recieved`);
+    setValue(inputValue, 'was added');
     }
   }
 
-  const remMem = async() => {
+  const remMem = async(event) => {
     if (evenTes) {
+      event.preventDefault();
       let tx = await evenTes.removeMember(inputValue_II);
       await tx.wait()
+      setValueRem(inputValue_II, 'was removed');
     }
   }
 
@@ -116,12 +120,14 @@ export default function HomePage() {
             <form onSubmit={handleSubmit}>
             <input type="text" value={inputValue} onChange={handleInputChange} />
             <button type="submit">Add Member</button>
+            <p> {value}</p>
             </form>
         </div>
         <div>
             <form onSubmit={remMem}>
             <input type="text" value={inputValue_II} onChange={handleInputChange_II} />
             <button type="submit">Remove Member</button>
+            <p> {valueRem}</p>
             </form>
         </div>
         <div>
