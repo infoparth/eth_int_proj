@@ -69,6 +69,11 @@ contract DegenToken is ERC20, Ownable, redeem {
         redTokens[msg.sender].push(items[_val].name); 
  
     } 
+
+    function myItems() public view returns(string[] memory){
+
+        return redTokens[msg.sender];
+    }
  
     function withdrawToken(address _add) public onlyOwner{ 
  
