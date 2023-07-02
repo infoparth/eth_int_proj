@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: MIT 
 pragma solidity ^0.8.18; 
 
-// Contract Address: 0xBE97a239c930c047ae399b39F9Af07e7a19DBB39
+// Contract Address: 0x51B38ee0c44A96cc41d0362B63165E0583fEac79
 
  
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol"; 
 import "@openzeppelin/contracts/access/Ownable.sol"; 
+import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
  
 contract redeem is Ownable{ 
     struct  item { 
@@ -30,7 +31,7 @@ contract redeem is Ownable{
  
 } 
  
-contract DegenToken is ERC20, Ownable, redeem { 
+contract DegenToken is ERC20, ERC20Burnable, Ownable, redeem { 
  
      
  
@@ -56,7 +57,7 @@ contract DegenToken is ERC20, Ownable, redeem {
     function burn_token(uint _val) public{ 
  
         require(balanceOf(msg.sender) >= _val, "You don't have enough tokens to burn"); 
-        transfer(address(0), _val); 
+        burn(_val); 
           
     } 
  
@@ -85,3 +86,5 @@ contract DegenToken is ERC20, Ownable, redeem {
  
      
 }
+
+
